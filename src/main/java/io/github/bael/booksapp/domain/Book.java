@@ -1,14 +1,8 @@
 package io.github.bael.booksapp.domain;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.Year;
 
@@ -21,18 +15,50 @@ public class Book {
     private Long id;
     private String title;
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    @ManyToOne
+    private Owner owner;
+
     public Book() {
     }
 
+
     private LocalDateTime createdOn;
     private String summary;
-    private Year publishedYear;
 
-    public Book(String title, String summary) {
+
+    public Book(String title, String summary, Owner owner) {
         this.title = title;
         this.summary = summary;
-
+        this.owner = owner;
         this.createdOn = LocalDateTime.now();
-
     }
 }

@@ -1,7 +1,7 @@
 package io.github.bael.booksapp.web;
 
-import io.github.bael.booksapp.domain.Book;
-import io.github.bael.booksapp.domain.BookRepository;
+import io.github.bael.booksapp.domain.Trade;
+import io.github.bael.booksapp.domain.TradeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,18 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class BookController {
+public class TradeController {
 
     @Autowired
-    private BookRepository bookRepository;
+    private TradeRepository tradeRepository;
 
-    @RequestMapping("/")
-    List<Book> index(){
-        List<Book> list = new ArrayList<>();
+    @RequestMapping("/trades")
+    public List<Trade> index() {
+        List<Trade> list = new ArrayList<>();
 
 
-        bookRepository.findAll().forEach(list::add);
+        tradeRepository.findAll().forEach(list::add);
 
         return list;
     }
+
 }
